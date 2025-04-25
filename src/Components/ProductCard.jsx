@@ -8,12 +8,12 @@ const ProductCard = ({product}) => {
     
     
     return (
-        <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer">
+        <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer border border-gray-300">
         <div className="relative">
           <img
            src={`https://admin.refabry.com/storage/product/${image}`}
             alt={name}
-            className="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-96  transition-transform duration-300 group-hover:scale-105"
           />
           {savedPrice && (
             <span className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
