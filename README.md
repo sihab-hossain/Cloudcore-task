@@ -1,12 +1,44 @@
-# React + Vite
+# 🛍️ Product Order App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple React application where users can:
 
-Currently, two official plugins are available:
+- View product details
+- Select quantity and size
+- Fill out an order form
+- Place an order via API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+👉 [Click to View Live](https://comfy-medovik-7a0195.netlify.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+- React
+- Tailwind CSS
+- React Icons
+- Axios
+- React Toastify
+
+## 📦 Features
+
+- Dynamic product rendering
+- Order form integration
+- Real API call for placing order
+- Toast notifications for success/error
+- Mobile responsive design
+
+## 🧪 Test Credentials
+
+You can try placing a test order using dummy data.
+
+## 🔗 API Used
+- `GET  https://admin.refabry.com/api/all/product/get`
+- `POST https://admin.refabry.com/api/public/order/create`
+
+## 📝 How to Run Locally
+
+```bash
+git clone https://github.com/your-username/product-order-app.git
+cd product-order-app
+npm install
+npm run dev
