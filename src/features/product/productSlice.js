@@ -9,7 +9,6 @@ export const fetchProducts = createAsyncThunk(
         `https://admin.refabry.com/api/all/product/get`
         );
         const data = await response.json();
-        console.log("API Data:", data);
         return data;
     }
 )

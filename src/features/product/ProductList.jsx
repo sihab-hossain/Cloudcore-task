@@ -6,7 +6,6 @@ import ProductCard from '../../Components/ProductCard'
 const ProductList = () => {
     const dispatch = useDispatch();
     const { products = [], loading, error } = useSelector((state) => state.product || {});
-    console.log(products);
     useEffect(() => {
         dispatch(fetchProducts());
     },[dispatch]);
