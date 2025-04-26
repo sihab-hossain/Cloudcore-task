@@ -2,7 +2,6 @@ import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 
 const HoodieDetails = ({data}) => {
-    console.log(data);
     return (
         <div className="space-y-2 text-sm text-gray-700">
         <p><strong>Available Colors:</strong> {data.colors.join(", ")}</p>

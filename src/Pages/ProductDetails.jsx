@@ -5,11 +5,13 @@ import { parseShortDescription } from "../utils/description";
 import JacketDetails from "../Components/JacketDetails";
 import HoodieDetails from "../Components/HoodieDetails";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
-
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const [des, setDes] = useState(null);
   const { id } = useParams();
+  const [load, setLoad] = useState(false);
 
   const {
     products = [],
@@ -25,7 +27,6 @@ const ProductDetails = () => {
       setDes(parsed);
     }
   }, [product]);
-console.log("Parsed description:", des);
   if (loading)
     return (
       <div className="flex justify-center mt-10">
@@ -34,8 +35,39 @@ console.log("Parsed description:", des);
     );
 
   if (error || !product)
-    return <div className="text-red-500 text-center mt-10">Product not found</div>;
+    return (
+      <div className="text-red-500 text-center mt-10">Product not found</div>
+    );
 
+  // Sample order data (dynamic করতে হলে form বানিয়ে user input নিতে হবে)
+  const orderData = {
+    product_ids: "1,2",
+    s_product_qty: "2,1",
+    c_phone: "01734252112",
+    c_name: "test",
+    courier: "steadfast",
+    address: "mirpur 12 ramzanessamarket",
+    advance: null,
+    cod_amount: "1250",
+    discount_amount: null,
+    delivery_charge: "80",
+  };
+  const handleOrderNow = async () => {
+    setLoad(true);
+    try {
+      const response = await axios.post(
+        "https://admin.refabry.com/api/public/order/create",
+        orderData
+      );
+      console.log("Order placed successfully:", response.data);
+      toast.success("🎉 Order placed successfully!");
+    } catch (error) {
+      console.error("Failed to place order:", error);
+      toast.error("❌ Failed to place order. Please try again.");
+    } finally {
+      setLoad(false);
+    }
+  };
   return (
     <div className="hero bg-base-200 py-32">
       <div className="hero-content flex-col lg:flex-row">
@@ -49,7 +81,9 @@ console.log("Parsed description:", des);
           <div className="mt-1 font-bold">
             <span className="text-xl font-bold">৳{product?.buying_price}</span>
             {product?.price && (
-              <span className="text-red-500 line-through ml-2 text-sm">৳{product?.price}</span>
+              <span className="text-red-500 line-through ml-2 text-sm">
+                ৳{product?.price}
+              </span>
             )}
           </div>
           {des?.type === "jacket" && <JacketDetails data={des} />}
@@ -61,11 +95,20 @@ console.log("Parsed description:", des);
             </p>
           )}
 
-         <div className="flex justify-between mt-4">
-        <Link to='/'><button className="btn flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mt-4"><FaHome /> Back to home</button></Link> 
-         <button className="btn  mt-4 flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
-         <FaShoppingCart /> Order Now</button>
-         </div>
+          <div className="flex justify-between mt-4">
+            <Link to="/">
+              <button className="btn flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mt-4">
+                <FaHome /> Back to home
+              </button>
+            </Link>
+            <button
+              onClick={handleOrderNow}
+              disabled={loading}
+              className="btn  mt-4 flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition"
+            >
+              <FaShoppingCart /> Order Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
